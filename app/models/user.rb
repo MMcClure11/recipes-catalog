@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :username, presence: true
 
-  validates :email, uniqueness: true
-  validates :email, presence: true
+  validates :name, presence: true
 
   has_many :recipes
+  has_many :recipe_categories
+  has_many :categories, through: :recipe_categories
 end
