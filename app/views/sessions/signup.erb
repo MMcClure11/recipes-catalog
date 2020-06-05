@@ -1,0 +1,25 @@
+<h2>Please Sign Up for the Recipes Catalog</h2>
+
+<% if @user && @user.errors.any? %>
+<ul>
+  <% @user.errors.full_messages.each do |error|%>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+
+<% end %>
+
+<form action="/signup" method="POST">
+  <label for="name">Enter your Name:</label>
+  <input type="text" name="name" placeholder="Name">
+  <label for="username">Create a Username:</label>
+  <input type="text" name="username" placeholder="Username">
+  <label for="password">Create a Password:</label>
+  <input type="password" name="password" placeholder="password">
+
+  <input type="submit" value="Sign Up">
+
+</form>
+
+<a href='/login'>Log In</a>
+<a href='/'>Home</a>
