@@ -2,6 +2,6 @@ require_relative './config/env'
 
 use Rack::MethodOverride
 
-use UserController
-use RecipeController
+use UsersController
+use RecipesController
 run ApplicationController
