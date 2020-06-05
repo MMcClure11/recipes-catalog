@@ -1,0 +1,28 @@
+<h2><%= @recipe.name %></h2>
+
+<h3>Categories</h3>
+<ul>
+  <% @recipe.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</ul>
+
+<h3>Serving Size</h3> <p><%= @recipe.serving_size %></p>
+
+<h3>Cook Time</h3> <p><%= @recipe.cook_time %></p>
+
+<h3>Ingredients</h3>
+<ul>
+<% @recipe.ingredients.split(",").each do |ingredient| %>
+  <li><%= ingredient.strip.capitalize %></li>
+  <% end %>
+</ul>
+
+<h3>Instructions</h3>
+<ol>
+<% @recipe.instructions.split(".").each do |instruction| %>
+  <li><%= instruction.strip.capitalize %></li>
+<% end %>
+</ol>
+
+<a href='/recipes'>All Recipes</a>
