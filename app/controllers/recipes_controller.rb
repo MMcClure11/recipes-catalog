@@ -12,4 +12,10 @@ class RecipesController < ApplicationController
     erb :'recipes/show'
   end
 
+  delete '/recipes/:slug' do
+    @recipe = Recipe.find_by_slug(params[:slug])
+    authorize(@recipe)
+    @recipe.destroy
+    redirect '/recipes'
   end
+end
