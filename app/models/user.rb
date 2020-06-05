@@ -1,4 +1,9 @@
+require_relative "./concerns/slugifiable"
+
 class User < ActiveRecord::Base
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
+
   has_secure_password
 
   validates :username, uniqueness: true
