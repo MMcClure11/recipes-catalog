@@ -1,7 +1,9 @@
 <h2>Welcome, <%= @user.username %>! Here are all of your Recipes</h2>
 
+<ul>
 <% @user.recipes.each do |recipe| %>
-  <%= recipe.name %>
+  <li><%= recipe.name %></li>
 <% end%>
+</ul>
 
 <a href='/logout'>Log Out</a>
