@@ -4,4 +4,5 @@ use Rack::MethodOverride
 
 use SessionsController
 use RecipesController
+use UsersController
 run ApplicationController
