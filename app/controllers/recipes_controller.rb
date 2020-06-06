@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes/:slug/edit' do 
-
+    erb :'/recipes/edit'
   end
 
   patch '/recipes/:slug' do 
@@ -39,6 +39,8 @@ class RecipesController < ApplicationController
   end
 end
 
+
+#category info
 # for recipes/show
 # <h3>Categories</h3>
 # <ul>
