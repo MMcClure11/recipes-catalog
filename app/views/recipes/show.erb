@@ -1,11 +1,6 @@
 <h2><%= @recipe.name %></h2>
 
-<h3>Categories</h3>
-<ul>
-  <% @recipe.categories.each do |category| %>
-    <li><%= category.name %></li>
-  <% end %>
-</ul>
+
 
 <h3>Serving Size</h3> <p><%= @recipe.serving_size %></p>
 
