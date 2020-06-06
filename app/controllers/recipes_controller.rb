@@ -24,11 +24,16 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes/:slug/edit' do 
+    @recipe = Recipe.find_by_slug(params[:slug])
+    authorize(@recipe)
     erb :'/recipes/edit'
   end
 
   patch '/recipes/:slug' do 
-
+    @recipe = Recipe.find_by_slug(params[:slug])
+    authorize(@recipe)
+    @recipe.update(name: params[:name], serving_size: params[:serving_size], cook_time: params[:cook_time], ingredients: params[:ingredients], instructions: params[:instructions])
+    redirect "/recipes/#{@recipe.slug}"
   end
 
   delete '/recipes/:slug' do
