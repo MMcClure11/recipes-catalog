@@ -19,6 +19,16 @@
   <textarea name="instructions" cols="30" rows="10" placeholder="Cut all of the fruits with a kunai knife into small pieces, and chop the parsley very fine. Mix together in medium sized bowl." required></textarea>
   <br><br>
 
+  <label for="category">Choose a Category:</label><br>
+    <% Category.all.each do |category| %>
+      <input type="checkbox" name="categories[]" id="<%= category.id %>" value="<%= category.id %>"><%= category.name %></input><br>
+    <% end %>
+    <br>
+  <p>Or Create a Category:</p>
+    <label for="new_category">Category Name:</label>
+    <input type="text" name="category[name]">
+  <br><br>
+
   <input type="submit" value="Create">
 
 </form>
