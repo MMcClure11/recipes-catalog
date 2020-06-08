@@ -18,7 +18,6 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do
-    binding.pry
     authenticate
     @recipe = Recipe.create(name: params[:name], 
       serving_size: params[:serving_size], 
@@ -41,13 +40,21 @@ class RecipesController < ApplicationController
   end
 
   patch '/recipes/:id' do 
+    if !params[:recipe].keys.include?("category_ids")
+      params[:recipe]["category_ids"] = []
+    end
     @recipe = Recipe.find_by(id: params[:id])
     authorize(@recipe)
-    @recipe.update(name: params[:name], 
+    @recipe.update(name: params[:recipe][:name], 
       serving_size: params[:serving_size], 
       cook_time: params[:cook_time], 
       ingredients: params[:ingredients], 
       instructions: params[:instructions])
+      @recipe.category_ids = params[:recipe][:category_ids]
+    if !params[:category][:name].empty?
+      @recipe.categories << Category.create(params[:category])
+    end
+    @recipe.save
     redirect "/recipes/#{@recipe.id}"
   end
 

@@ -3,7 +3,7 @@
 <form action="/recipes/<%= @recipe.id %>" method="POST">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
   <label for="name">Recipe Name:</label>
-  <input type="text" name="name" value="<%= @recipe.name %>" required><br>
+  <input type="text" name="recipe[name]" value="<%= @recipe.name %>" required><br>
   <br><br>
   <label for="serving_size">Serving Size:</label>
   <input type="text" name="serving_size" value="<%= @recipe.serving_size %>" required>
@@ -20,7 +20,17 @@
   <textarea name="instructions" cols="30" rows="10" value="<%= @recipe.instructions %>" required><%= @recipe.instructions %></textarea>
   <br><br>
 
-  <input type="submit" value="Edit Recipe">
+  <label for="category">Choose a Category:</label><br>
+  <% Category.all.each do |category| %>
+    <input type="checkbox" name="recipe[category_ids][]" id="<%= category.id %>" value="<%= category.id %>" <%='checked' if @recipe.categories.include?(category) %>><%= category.name %></input><br>
+  <% end %>
+  <br>
+<p>Or Create a Category:</p>
+  <label for="new_category">Category Name:</label>
+  <input type="text" name="category[name]">
+<br><br>
+
+  <input type="submit" value="Update Recipe">
 
 </form>
 <br>
