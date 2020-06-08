@@ -11,8 +11,8 @@ class RecipesController < ApplicationController
     erb :'/recipes/new'
   end
 
-  get '/recipes/:slug' do
-    @recipe = Recipe.find_by_slug(params[:slug])
+  get '/recipes/:id' do
+    @recipe = Recipe.find(params[:id])
     authorize(@recipe)
     erb :'recipes/show'
   end
@@ -20,24 +20,24 @@ class RecipesController < ApplicationController
   post '/recipes' do
     authenticate
     @recipe = Recipe.create(name: params[:name], serving_size: params[:serving_size], cook_time: params[:cook_time], ingredients: params[:ingredients], instructions: params[:instructions], user: current_user)
-    redirect "/recipes/#{@recipe.slug}"
+    redirect "/recipes/#{@recipe.id}"
   end
 
-  get '/recipes/:slug/edit' do 
-    @recipe = Recipe.find_by_slug(params[:slug])
+  get '/recipes/:id/edit' do 
+    @recipe = Recipe.find_by(id: params[:id])
     authorize(@recipe)
     erb :'/recipes/edit'
   end
 
-  patch '/recipes/:slug' do 
-    @recipe = Recipe.find_by_slug(params[:slug])
+  patch '/recipes/:id' do 
+    @recipe = Recipe.find_by(id: params[:id])
     authorize(@recipe)
     @recipe.update(name: params[:name], serving_size: params[:serving_size], cook_time: params[:cook_time], ingredients: params[:ingredients], instructions: params[:instructions])
-    redirect "/recipes/#{@recipe.slug}"
+    redirect "/recipes/#{@recipe.id}"
   end
 
-  delete '/recipes/:slug' do
-    recipe = Recipe.find_by_slug(params[:slug])
+  delete '/recipes/:id' do
+    recipe = Recipe.find_by(id: params[:id])
     authorize(recipe)
     recipe.destroy
     redirect '/recipes'

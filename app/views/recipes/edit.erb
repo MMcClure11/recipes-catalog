@@ -1,6 +1,6 @@
 <h2>Create New Recipe</h2>
 
-<form action="/recipes/<%= @recipe.slug %>" method="POST">
+<form action="/recipes/<%= @recipe.id %>" method="POST">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
   <label for="name">Recipe Name:</label>
   <input type="text" name="name" value="<%= @recipe.name %>" required><br>
@@ -26,7 +26,7 @@
 <br>
 
 
-<form action="/recipes/<%= @recipe.slug %>" method="post">
+<form action="/recipes/<%= @recipe.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete this Recipe">
 </form><br>
