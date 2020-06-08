@@ -9,6 +9,7 @@
   <body>
 
   <% if logged_in? %>
+    <a href="/users/<%= @user.slug %>/edit">Edit Your Account</a>
     <a href='/logout'>Log Out</a>
   <% end %>
 
