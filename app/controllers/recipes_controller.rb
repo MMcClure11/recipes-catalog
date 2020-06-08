@@ -57,7 +57,7 @@ class RecipesController < ApplicationController
       @recipe.category_ids = params[:recipe][:category_ids]
     if !params[:category][:name].empty?
       new_category = Category.create(params[:category])
-      new_category.user = current_user
+      current_user.categories << new_category
       @recipe.categories << new_category
     end
     @recipe.save
