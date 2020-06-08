@@ -33,6 +33,11 @@ class ApplicationController < Sinatra::Base
       redirect '/recipes' if resource.user != current_user
     end
 
+    def authorize_user(user)
+      authenticate
+      redirect '/recipes' if user != current_user
+    end
+
   end
 
 end
