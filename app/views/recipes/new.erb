@@ -25,7 +25,7 @@
   <br><br>
 
   <label for="category">Choose a Category:</label><br>
-    <% Category.all.each do |category| %>
+    <% Category.all.sort {|a, b| a.name <=> b.name}.each do |category| %>
       <input type="checkbox" name="categories[]" id="<%= category.id %>" value="<%= category.id %>"><%= category.name %></input><br>
     <% end %>
     <br>
