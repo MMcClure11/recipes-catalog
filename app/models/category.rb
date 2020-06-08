@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
   
+  belongs_to :user
   has_many :recipe_categories
   has_many :recipes, through: :recipe_categories
 end
