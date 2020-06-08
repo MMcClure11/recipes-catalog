@@ -35,7 +35,7 @@
   <br><br>
 
   <label for="category">Choose a Category:</label><br>
-  <% Category.all.sort {|a, b| a.name <=> b.name}.each do |category| %>
+  <% @user.categories.all.sort {|a, b| a.name <=> b.name}.each do |category| %>
     <input type="checkbox" name="recipe[category_ids][]" id="<%= category.id %>" value="<%= category.id %>" <%='checked' if @recipe.categories.include?(category) %>><%= category.name %></input><br>
   <% end %>
   

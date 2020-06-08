@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_154414) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
   end
 
   create_table "recipe_categories", force: :cascade do |t|
