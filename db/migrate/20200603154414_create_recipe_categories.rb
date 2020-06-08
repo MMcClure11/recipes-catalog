@@ -3,7 +3,6 @@ class CreateRecipeCategories < ActiveRecord::Migration[6.0]
     create_table :recipe_categories do |t|
       t.integer :recipe_id
       t.integer :category_id
-      t.integer :user_id
     end
   end
 end

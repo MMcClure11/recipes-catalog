@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true
 
   has_many :recipes
-  has_many :recipe_categories
+  has_many :recipe_categories, through: :recipes
   has_many :categories, through: :recipe_categories
 end
