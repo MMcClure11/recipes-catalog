@@ -2,7 +2,7 @@
 
 <h3>Categories</h3>
 <ul>
-  <% @recipe.categories.each do |category| %>
+  <% @recipe.categories.all.sort {|a, b| a.name <=> b.name}.each do |category| %>
     <li><%= category.name %></li>
   <% end %>
 </ul>

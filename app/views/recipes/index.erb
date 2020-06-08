@@ -1,7 +1,7 @@
 <h2>Welcome, <%= @user.username %>! Here are all of your Recipes</h2>
 
 <ul>
-<% @user.recipes.each do |recipe| %>
+<% @user.recipes.all.sort {|a, b| a.name <=> b.name }.each do |recipe| %>
   <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
 <% end%>
 </ul>
