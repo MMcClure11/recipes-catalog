@@ -19,18 +19,23 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     authenticate
-    @recipe = Recipe.create(name: params[:name], 
-      serving_size: params[:serving_size], 
-      cook_time: params[:cook_time], 
-      ingredients: params[:ingredients], 
-      instructions: params[:instructions], 
-      user: current_user)
-    @recipe.category_ids = params[:categories]
-    if !params[:category][:name].empty?
-      @recipe.categories << Category.create(params[:category])
+    if !params[:categories] && params[:category][:name].empty?
+      @error = "Please select a category or create a new category."
+      erb :'/recipes/new'
+    else
+      @recipe = Recipe.create(name: params[:name], 
+        serving_size: params[:serving_size], 
+        cook_time: params[:cook_time], 
+        ingredients: params[:ingredients], 
+        instructions: params[:instructions], 
+        user: current_user)
+      @recipe.category_ids = params[:categories]
+      if !params[:category][:name].empty?
+        @recipe.categories << Category.create(params[:category])
+      end
+      @recipe.save
+      redirect "/recipes/#{@recipe.id}"
     end
-    @recipe.save
-    redirect "/recipes/#{@recipe.id}"
   end
 
   get '/recipes/:id/edit' do 
