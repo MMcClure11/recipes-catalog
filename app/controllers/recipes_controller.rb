@@ -19,7 +19,12 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     authenticate
-    @recipe = Recipe.create(name: params[:name], serving_size: params[:serving_size], cook_time: params[:cook_time], ingredients: params[:ingredients], instructions: params[:instructions], user: current_user)
+    @recipe = Recipe.create(name: params[:name], 
+      serving_size: params[:serving_size], 
+      cook_time: params[:cook_time], 
+      ingredients: params[:ingredients], 
+      instructions: params[:instructions], 
+      user: current_user)
     redirect "/recipes/#{@recipe.id}"
   end
 
@@ -32,7 +37,11 @@ class RecipesController < ApplicationController
   patch '/recipes/:id' do 
     @recipe = Recipe.find_by(id: params[:id])
     authorize(@recipe)
-    @recipe.update(name: params[:name], serving_size: params[:serving_size], cook_time: params[:cook_time], ingredients: params[:ingredients], instructions: params[:instructions])
+    @recipe.update(name: params[:name], 
+      serving_size: params[:serving_size], 
+      cook_time: params[:cook_time], 
+      ingredients: params[:ingredients], 
+      instructions: params[:instructions])
     redirect "/recipes/#{@recipe.id}"
   end
 
