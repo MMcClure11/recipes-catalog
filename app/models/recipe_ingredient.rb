@@ -6,6 +6,4 @@ class RecipeIngredient < ActiveRecord::Base
     display = "#{self.quantity} - " + "#{self.ingredient.name}" 
   end
 
-  
-
 end
