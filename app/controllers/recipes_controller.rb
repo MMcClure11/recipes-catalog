@@ -1,3 +1,5 @@
+require './config/env'
+
 class RecipesController < ApplicationController
 
   get '/recipes' do
@@ -29,7 +31,7 @@ class RecipesController < ApplicationController
         if recipe_ingredient[:ingredient][:name] != ""
           RecipeIngredient.create(
             recipe: @recipe,
-            ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name]),
+            ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name].downcase),
             quantity: recipe_ingredient[:quantity])
         end
       end
@@ -65,7 +67,7 @@ class RecipesController < ApplicationController
       if recipe_ingredient[:ingredient][:name] != ""
         RecipeIngredient.create(
           recipe: @recipe,
-          ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name]),
+          ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name].downcase),
           quantity: recipe_ingredient[:quantity])
       end
     end
