@@ -17,9 +17,36 @@
   
   <br><br>
 
-  <label for="ingredients">Ingredients: <strong>Separate each ingredient by a comma ( , )</strong></label><br>
-  <br>
-  <textarea name="ingredients" cols="30" rows="10" value="<%= @recipe.ingredients %>" required><%= @recipe.ingredients %></textarea>
+  <table>
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+        <tr>
+          <td>
+            <input type="text" name="recipe_ingredients[][ingredient][name]" value="<%=recipe_ingredient.ingredient.name %>">
+          </td>
+          <td>
+          <input type="text" name="recipe_ingredients[][quantity]" value="<%= recipe_ingredient.quantity %>">
+          </td>
+        </tr>
+      <% end %>
+      <% 10.times do %>
+      <tr>
+        <td>
+          <input type="text" name="recipe_ingredients[][ingredient][name]" >
+        </td>
+        <td>
+          <input type="text" name="recipe_ingredients[][quantity]" >
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
   
   <br><br>
 
