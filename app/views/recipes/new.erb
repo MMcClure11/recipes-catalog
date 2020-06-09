@@ -15,9 +15,28 @@
   <label for="cook_time">Cook Time:</label>  
   <input type="text" name="cook_time" placeholder="30 minutes" required>
   <br><br>
-  <label for="ingredients">Ingredients: <strong>Separate each ingredient by a comma ( , )</strong></label><br>
-  <br>
-  <textarea name="ingredients" cols="30" rows="10" placeholder="2 cups apple, 1 cup cherries, 1 large tomato, 2 T parsley" required></textarea>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% 10.times do %>
+      <tr>
+        <td>
+          <input type="text" name="recipe_ingredients[][ingredient][name]" >
+        </td>
+        <td>
+          <input type="text" name="recipe_ingredients[][quantity]" >
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
   <br><br>
   <label for="instructions">Instructions: <strong>Separate each instruction by a period ( . )</strong></label>
   <br>
