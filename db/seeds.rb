@@ -16,3 +16,4 @@ RecipeIngredient.create(ingredient: i5, recipe: r, quantity: "1/2")
 RecipeIngredient.create(ingredient: i6, recipe: r, quantity: "several pieces")
 
 c = Category.create(name: "Beverage")
+r.categories << c

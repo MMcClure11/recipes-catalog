@@ -13,8 +13,8 @@
 
 <h3>Ingredients</h3>
 <ul>
-<% @recipe.ingredients.split(",").each do |ingredient| %>
-  <li><%= ingredient.strip.capitalize %></li>
+<% @recipe.recipe_ingredients.each do |ingredient| %>
+  <li><%= ingredient.name_and_amount %></li>
   <% end %>
 </ul>
 
