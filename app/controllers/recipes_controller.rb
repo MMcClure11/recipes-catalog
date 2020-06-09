@@ -52,7 +52,7 @@ class RecipesController < ApplicationController
       instructions: params[:instructions])
       @recipe.category_ids = params[:recipe][:category_ids]
     if !params[:category][:name].empty?
-      @recipe.categories << Category.create(params[:category])
+      @recipe.categories << Category.find_or_create_by(name: params[:category][:name])
     end
     @recipe.save
     redirect "/recipes/#{@recipe.id}"
