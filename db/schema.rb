@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_06_08_225353) do
     t.integer "user_id"
     t.string "name"
     t.text "instructions"
-    t.text "ingredients"
     t.string "serving_size"
     t.string "cook_time"
   end
