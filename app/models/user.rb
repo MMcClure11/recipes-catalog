@@ -18,4 +18,7 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :recipe_categories, through: :recipes
   has_many :categories, through: :recipe_categories
+
+  has_many :recipe_ingredients, through: :recipes
+  has_many :ingredients, through: :recipe_ingredients
 end
