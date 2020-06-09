@@ -35,7 +35,6 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id/edit' do 
     @recipe = Recipe.find_by(id: params[:id])
-    @user = current_user
     authorize(@recipe)
     erb :'/recipes/edit'
   end
@@ -53,9 +52,7 @@ class RecipesController < ApplicationController
       instructions: params[:instructions])
       @recipe.category_ids = params[:recipe][:category_ids]
     if !params[:category][:name].empty?
-      new_category = Category.create(params[:category])
-      current_user.categories << new_category
-      @recipe.categories << new_category
+      @recipe.categories << Category.create(params[:category])
     end
     @recipe.save
     redirect "/recipes/#{@recipe.id}"
