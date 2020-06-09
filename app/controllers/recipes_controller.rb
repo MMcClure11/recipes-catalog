@@ -57,8 +57,19 @@ class RecipesController < ApplicationController
     @recipe.update(name: params[:recipe][:name], 
       serving_size: params[:serving_size], 
       cook_time: params[:cook_time], 
-      ingredients: params[:ingredients], 
       instructions: params[:instructions])
+
+    @recipe.recipe_ingredients.clear
+
+    params[:recipe_ingredients].each do |recipe_ingredient|
+      if recipe_ingredient[:ingredient][:name] != ""
+        RecipeIngredient.create(
+          recipe: @recipe,
+          ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name]),
+          quantity: recipe_ingredient[:quantity])
+      end
+    end
+
       @recipe.category_ids = params[:recipe][:category_ids]
     if !params[:category][:name].empty?
       @recipe.categories << Category.find_or_create_by(name: params[:category][:name])
