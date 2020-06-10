@@ -10,4 +10,17 @@ class Recipe < ActiveRecord::Base
 
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
+
+  def create_recipe_ingredient_from(recipe_ingredients)
+    recipe_ingredients.each do |recipe_ingredient|
+      if recipe_ingredient[:ingredient][:name] != ""
+        RecipeIngredient.create(
+          recipe: self,
+          ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name].downcase),
+          quantity: recipe_ingredient[:quantity])
+      end
+    end
+  end
+
+  
 end
