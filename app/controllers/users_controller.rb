@@ -9,10 +9,10 @@ class UsersController < ApplicationController
   patch '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     authorize_user(@user)
-    @user.update(name: params[:name].gsub(), 
-      email: sanitize(params[:email]),
-      username: sanitize(params[:username]),
-      password: sanitize(params[:password])
+    @user.update(name: params[:name].gsub(/[\<\>\/]/, ""), 
+      email: params[:email].gsub(/[\<\>\/]/, ""),
+      username: params[:username].gsub(/[\<\>\/]/, ""),
+      password: params[:password]
       )
     if @user.save
       redirect '/recipes'
