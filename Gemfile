@@ -20,3 +20,5 @@ gem "bcrypt", "~> 3.1"
 gem "thin", "~> 1.7"
 
 gem "rake", "~> 13.0"
+
+gem "sanitize", "~> 5.2"

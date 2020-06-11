@@ -1,4 +1,5 @@
 require_relative "./concerns/slugifiable"
+require 'sanitize'
 
 class Recipe < ActiveRecord::Base
   extend Slugifiable::ClassMethods
@@ -16,7 +17,7 @@ class Recipe < ActiveRecord::Base
       if recipe_ingredient[:ingredient][:name] != ""
         RecipeIngredient.create(
           recipe: self,
-          ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name].downcase),
+          ingredient: Ingredient.find_or_create_by(name: Sanitize.fragment(recipe_ingredient[:ingredient][:name]).downcase),
           quantity: recipe_ingredient[:quantity])
       end
     end

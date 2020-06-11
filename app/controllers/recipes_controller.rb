@@ -1,4 +1,5 @@
 require './config/env'
+require 'sanitize'
 
 class RecipesController < ApplicationController
 
@@ -21,17 +22,17 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     authenticate
-    @recipe = Recipe.create(name: params[:name], 
-      serving_size: params[:serving_size], 
-      cook_time: params[:cook_time], 
-      instructions: params[:instructions], 
+    @recipe = Recipe.create(name: Sanitize.fragment(params[:name]), 
+      serving_size: Sanitize.fragment(params[:serving_size]), 
+      cook_time: Sanitize.fragment(params[:cook_time]), 
+      instructions: Sanitize.fragment(params[:instructions]), 
       user: current_user)
     
-    @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
+    @recipe.create_recipe_ingredient_from(Sanitize.fragment(params[:recipe_ingredients]))
     
     @recipe.category_ids = params[:categories]
     if !params[:category][:name].empty?
-      @recipe.categories << Category.find_or_create_by(name: params[:category][:name].downcase.capitalize)
+      @recipe.categories << Category.find_or_create_by(name: Sanitize.fragment(params[:category][:name]).downcase.capitalize)
     end
     @recipe.save
     redirect "/recipes/#{@recipe.id}"
