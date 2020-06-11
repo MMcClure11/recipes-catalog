@@ -27,14 +27,7 @@ class RecipesController < ApplicationController
       instructions: params[:instructions], 
       user: current_user)
     
-      params[:recipe_ingredients].each do |recipe_ingredient|
-        if recipe_ingredient[:ingredient][:name] != ""
-          RecipeIngredient.create(
-            recipe: @recipe,
-            ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name].downcase),
-            quantity: recipe_ingredient[:quantity])
-        end
-      end
+    @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
     
     @recipe.category_ids = params[:categories]
     if !params[:category][:name].empty?
@@ -63,16 +56,8 @@ class RecipesController < ApplicationController
 
     @recipe.recipe_ingredients.clear
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
-    # params[:recipe_ingredients].each do |recipe_ingredient|
-    #   if recipe_ingredient[:ingredient][:name] != ""
-    #     RecipeIngredient.create(
-    #       recipe: @recipe,
-    #       ingredient: Ingredient.find_or_create_by(name: recipe_ingredient[:ingredient][:name].downcase),
-    #       quantity: recipe_ingredient[:quantity])
-    #   end
-    # end
 
-      @recipe.category_ids = params[:recipe][:category_ids]
+    @recipe.category_ids = params[:recipe][:category_ids]
     if !params[:category][:name].empty?
       @recipe.categories << Category.find_or_create_by(name: params[:category][:name])
     end
