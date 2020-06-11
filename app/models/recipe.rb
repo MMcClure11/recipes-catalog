@@ -18,7 +18,8 @@ class Recipe < ActiveRecord::Base
         RecipeIngredient.create(
           recipe: self,
           ingredient: Ingredient.find_or_create_by(name: Sanitize.fragment(recipe_ingredient[:ingredient][:name]).downcase),
-          quantity: recipe_ingredient[:quantity])
+          quantity: Sanitize.fragment(recipe_ingredient[:quantity])
+        )
       end
     end
   end

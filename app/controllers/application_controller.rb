@@ -38,6 +38,10 @@ class ApplicationController < Sinatra::Base
       redirect '/recipes' if user != current_user
     end
 
+    def sanitize(params)
+      Sanitize.fragment(params)
+    end
+
   end
 
 end
