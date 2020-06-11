@@ -50,6 +50,7 @@ class RecipesController < ApplicationController
     if !params[:recipe].keys.include?("category_ids")
       params[:recipe]["category_ids"] = []
     end
+    
     @recipe.update(name: sanitize(params[:recipe][:name]), 
       serving_size: sanitize(params[:serving_size]), 
       cook_time: sanitize(params[:cook_time]), 

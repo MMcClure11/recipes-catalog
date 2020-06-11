@@ -1,0 +1,5 @@
+<ul>
+<% @user.categories.all.sort {|a, b| a.name <=> b.name }.each do |category| %>
+  <li><a href="/categores/<%= category.id %>"><%= category.name %></a></li>
+<% end%>
+</ul>
