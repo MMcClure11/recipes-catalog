@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.create(name: sanitize(params[:name]), 
       serving_size: sanitize(params[:serving_size]), 
       cook_time: sanitize(params[:cook_time]), 
-      instructions: sanitize(params[:instructions]), 
+      instructions: sanitize(params[:instructions]),
       user: current_user)
     
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
@@ -50,17 +50,18 @@ class RecipesController < ApplicationController
     if !params[:recipe].keys.include?("category_ids")
       params[:recipe]["category_ids"] = []
     end
-    @recipe.update(name: params[:recipe][:name], 
-      serving_size: params[:serving_size], 
-      cook_time: params[:cook_time], 
-      instructions: params[:instructions])
+    @recipe.update(name: sanitize(params[:recipe][:name]), 
+      serving_size: sanitize(params[:serving_size]), 
+      cook_time: sanitize(params[:cook_time]), 
+      instructions: sanitize(params[:instructions])
+    )
 
     @recipe.recipe_ingredients.clear
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
 
     @recipe.category_ids = params[:recipe][:category_ids]
     if !params[:category][:name].empty?
-      @recipe.categories << Category.find_or_create_by(name: params[:category][:name].downcase.capitalize)
+      @recipe.categories << Category.find_or_create_by(name: sanitize(params[:category][:name]).downcase.capitalize)
     end
     @recipe.save
     redirect "/recipes/#{@recipe.id}"
