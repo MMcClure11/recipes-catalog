@@ -1,5 +1,10 @@
-<ul>
-<% @user.categories.all.sort {|a, b| a.name <=> b.name }.each do |category| %>
-  <li><a href="/categores/<%= category.id %>"><%= category.name %></a></li>
+<ul><br>
+<% @user.categories.uniq.sort {|a, b| a.name <=> b.name }.each do |category| %>
+  <br><li><%= category.name %></li>
+  <ol>
+  <% category.recipes.uniq.sort {|a, b| a.name <=> b.name }.each do |recipe| %>
+    <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
+  <% end %> 
+  </ol>
 <% end%>
 </ul>
