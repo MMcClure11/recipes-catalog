@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   patch '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     authorize_user(@user)
-    @user.update(name: sanitize(params[:name]), 
+    @user.update(name: params[:name].gsub(), 
       email: sanitize(params[:email]),
       username: sanitize(params[:username]),
       password: sanitize(params[:password])
