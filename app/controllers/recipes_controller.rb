@@ -34,8 +34,12 @@ class RecipesController < ApplicationController
     if !params[:category][:name].empty?
       @recipe.categories << Category.find_or_create_by(name: sanitize(params[:category][:name]).downcase.capitalize)
     end
-    @recipe.save
-    redirect "/recipes/#{@recipe.id}"
+    if @recipe.save
+      redirect "/recipes/#{@recipe.id}"
+    else
+      @recipe = 
+      erb :'/recipes/new'
+    end
   end
 
   get '/recipes/:id/edit' do 

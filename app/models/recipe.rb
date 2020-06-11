@@ -12,6 +12,8 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
 
+  validates :name, presence: :true
+
   def create_recipe_ingredient_from(recipe_ingredients)
     recipe_ingredients.each do |recipe_ingredient|
       if recipe_ingredient[:ingredient][:name] != ""
