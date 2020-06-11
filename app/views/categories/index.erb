@@ -12,3 +12,12 @@
   </ol>
 <% end%>
 </ul>
+
+<h3> No category assigned: </h3>
+<ol>
+<% @user.recipes.each do |r| %>
+  <% if r.categories.empty? %>
+   <li> <%= r.name %> </li>
+  <% end %>
+<% end %>
+</ol>
