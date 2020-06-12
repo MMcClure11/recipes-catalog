@@ -15,9 +15,9 @@ class UsersController < ApplicationController
   patch '/users/:id' do
     @user = User.find_by(id: params[:id])
     authorize_user(@user)
-    @user.update(name: params[:name].gsub(/[\<\>\/]/, ""), 
-      email: params[:email].gsub(/[\<\>\/]/, ""),
-      username: params[:username].gsub(/[\<\>\/]/, ""),
+    @user.update(name: sanitize(params[:name]), 
+      email: sanitize(params[:email]),
+      username: sanitize(params[:username]),
       password: params[:password]
       )
     if @user.save
