@@ -10,9 +10,9 @@ class ApplicationController < Sinatra::Base
   #   'This is nowhere to be found.'
   # end
 
-  error do
-    'Sorry there was a nasty error - ' + env['sinatra.error'].message
-  end
+  # error do
+  #   'Sorry there was a nasty error - ' + env['sinatra.error'].message
+  # end
 
   get '/' do
     if logged_in?
