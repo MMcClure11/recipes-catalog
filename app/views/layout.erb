@@ -10,12 +10,15 @@
 
   <body>
 
-  <% if logged_in? %>
-    <a href='/logout'>Log Out</a>
-    <a href='/recipes'>See all Recipes</a>
-  <% end %>
+    <%= render_navbar %>
 
-<%= yield %>
+    <% if logged_in? %>
+      <a href='/logout'>Log Out</a>
+      <a href='/recipes'>See all Recipes</a>
+    <% end %>
+  
+  <h1>Recipes Catalog</h1>
+  <%= yield %>
 
   </body>
   </html>
