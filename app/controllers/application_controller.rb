@@ -1,6 +1,7 @@
 class ApplicationController < Sinatra::Base
 
   configure do
+    set :public_folder, Proc.new { File.join(root, "public") }
     set :views, -> {File.join(root, "../views")}
     enable :sessions
     set :session_secret, ENV['SESSION_SECRET']
