@@ -1,14 +1,12 @@
 class SessionsController < ApplicationController
 
   get '/signup' do
-    if logged_in?
-      redirect '/recipes'
-    else
+      redirect '/recipes' if logged_in?
       erb :'/sessions/signup'
-    end
   end
 
   post '/signup' do
+    redirect '/recipes' if logged_in?
     @user = User.new(name: sanitize(params[:name]), 
       email: sanitize(params[:email]), 
       username: sanitize(params[:username]), 
@@ -24,11 +22,8 @@ class SessionsController < ApplicationController
   end
 
   get '/login' do
-    if logged_in?
-      redirect '/recipes'
-    else
-      erb :'/sessions/login'
-    end
+    redirect '/recipes' if logged_in?
+    erb :'/sessions/login'
   end
 
   post '/login' do
