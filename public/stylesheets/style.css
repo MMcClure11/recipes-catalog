@@ -1,4 +1,27 @@
-body {
-  background-color: #fafae1;
+body, html {
+  background-color: #fffff0;
   font-family: 'Indie Flower', cursive;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 7px;
+  height: 5em;
+  background-color: rgb(101, 208, 216);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover{
+  color: red;
+}
+
+body {
+  text-align: justify;
+  padding-left: 2em;
+  padding-right: 2em;
 }
