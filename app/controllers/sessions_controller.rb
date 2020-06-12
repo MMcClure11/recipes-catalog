@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
 
   get '/signup' do
-      redirect '/recipes' if logged_in?
+      redirect '/dashboard' if logged_in?
       erb :'/sessions/signup'
   end
 
   post '/signup' do
-    redirect '/recipes' if logged_in?
+    redirect '/dashboard' if logged_in?
     @user = User.new(name: sanitize(params[:name]), 
       email: sanitize(params[:email]), 
       username: sanitize(params[:username]), 
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       # password_confirmation: params[:password_confirmation])
     if @user.save
       session[:user_id] = @user.id
-      redirect '/recipes'
+      redirect '/dashboard'
     else
       erb :'sessions/signup'
     end
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/recipes'
+      redirect "/dashboard"
     else
       @error = "Your credentials are incorrect. Please try again"
       erb  :'sessions/login'

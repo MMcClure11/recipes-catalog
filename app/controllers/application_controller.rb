@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect '/recipes'
     else
-      erb :index
+      erb :root
     end
   end
 

@@ -1,10 +1,7 @@
-<h2>Welcome, <%= @user.username %>!</h2>
 
-<a href="/users/<%= @user.slug %>/edit">Edit Your Account</a>
 
-<h3>Here are all of your recipes!</h3>
+<h2><%= @user.username %>, Here are all of your recipes!</h2>
 
-<h4><a href='/categories'>See your Recipes by Category</a></h4>
 <ul>
 <% @user.recipes.all.sort {|a, b| a.name <=> b.name }.each do |recipe| %>
   <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>

@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+  get '/dashboard' do
+    authenticate
+    @user = current_user
+    erb :'/users/dashboard'
+  end
+
   get '/users/:slug/edit' do
     @user = User.find_by_slug(params[:slug])
     authorize_user(@user)
@@ -15,7 +21,7 @@ class UsersController < ApplicationController
       password: params[:password]
       )
     if @user.save
-      redirect '/recipes'
+      redirect '/dashboard'
     else
       erb :"/users/edit"
     end
