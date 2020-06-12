@@ -1,9 +1,6 @@
-require_relative "./concerns/slugifiable"
 require 'sanitize'
 
 class Recipe < ActiveRecord::Base
-  extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
   
   belongs_to :user
   has_many :recipe_categories
