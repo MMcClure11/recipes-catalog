@@ -31,13 +31,12 @@ class RecipesController < ApplicationController
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
     
     @recipe.category_ids = params[:categories]
-    if !params[:category][:name].empty? && !@recipe.categories.include?(Category.find_by(name: sanitize(params[:category][:name]).downcase.capitalize))
-      @recipe.categories << Category.find_or_create_by(name: sanitize(params[:category][:name]).downcase.capitalize)
+    if !params[:category][:name].empty? && !@recipe.categories.include?(Category.find_by(name: params[:category][:name].gsub(/[\<\>\/]/, "").downcase.capitalize))
+      @recipe.categories << Category.find_or_create_by(name: params[:category][:name].gsub(/[\<\>\/]/, "").downcase.capitalize)
     end
     if @recipe.save
       redirect "/recipes/#{@recipe.id}"
     else
-      @recipe = 
       erb :'/recipes/new'
     end
   end

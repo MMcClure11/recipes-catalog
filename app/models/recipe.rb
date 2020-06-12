@@ -9,7 +9,10 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
 
-  validates :name, presence: :true
+  validates :name, presence: true
+  validates :serving_size, presence: true
+  validates :cook_time, presence: true
+  validates :instructions, presence: true
 
   def create_recipe_ingredient_from(recipe_ingredients)
     recipe_ingredients.each do |recipe_ingredient|
