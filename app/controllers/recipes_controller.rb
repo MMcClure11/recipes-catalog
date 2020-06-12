@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
     
     @recipe.category_ids = params[:categories]
-    if !params[:category][:name].empty?
+    if !params[:category][:name].empty? && !@recipe.categories.include?(Category.find_by(name: sanitize(params[:category][:name]).downcase.capitalize))
       @recipe.categories << Category.find_or_create_by(name: sanitize(params[:category][:name]).downcase.capitalize)
     end
     if @recipe.save
@@ -65,7 +65,7 @@ class RecipesController < ApplicationController
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
 
     @recipe.category_ids = params[:recipe][:category_ids]
-    if !params[:category][:name].empty?
+    if !params[:category][:name].empty? && !@recipe.categories.include?(Category.find_by(name: sanitize(params[:category][:name]).downcase.capitalize))
       @recipe.categories << Category.find_or_create_by(name: sanitize(params[:category][:name]).downcase.capitalize)
     end
     @recipe.save
