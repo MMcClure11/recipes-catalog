@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
 
   # not_found do
   #   'This is nowhere to be found.'
-  # end ???????
+  # end
 
   error do
     'Sorry there was a nasty error - ' + env['sinatra.error'].message
