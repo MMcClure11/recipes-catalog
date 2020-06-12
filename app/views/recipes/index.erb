@@ -1,4 +1,8 @@
-<h2>Welcome, <%= @user.username %>! Here are all of your Recipes</h2>
+<h2>Welcome, <%= @user.username %>!</h2>
+
+<a href="/users/<%= @user.slug %>/edit">Edit Your Account</a>
+
+<h3>Here are all of your recipes!</h3>
 
 <h4><a href='/categories'>See your Recipes by Category</a></h4>
 <ul>
@@ -7,6 +11,6 @@
 <% end%>
 </ul>
 
-<a href="/recipes/new">Make a New Recipe</a>
-<a href="/users/<%= @user.slug %>/edit">Edit Your Account</a>
+
+
 
