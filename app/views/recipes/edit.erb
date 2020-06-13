@@ -1,5 +1,21 @@
 <h2>Edit Recipe</h2>
 
+<% if @recipe && @recipe.errors.any? %>
+<ul>
+  <% @recipe.errors.full_messages.each do |error|%>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<% if @category && @category.errors.any? %>
+<ul>
+  <% @category.errors.full_messages.each do |error|%>
+    <li>Category <%= error.downcase %></li>
+  <% end %>
+</ul>
+<% end %>
+
 
 <form action="/recipes/<%= @recipe.id %>" method="POST">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
