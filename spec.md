@@ -11,7 +11,7 @@ Specs:
 - [x] Ensure that users can't modify content created by other users - helper methods of authorize and authenticate prevent users from making patch and delete requests to recipes that do not belong to them
 - [x] Include user input validations - validates for presence of name, username, and email for user signup and editing their account. validates for presence of name, cook_time, serving_size and instructions when making a recipe.
 - [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new) - uses validation failures to display error messages on sign up, editing user account, making and editing a recipe.
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code - license is in root directory.
 
 Confirm
 - [x] You have a large number of small Git commits
