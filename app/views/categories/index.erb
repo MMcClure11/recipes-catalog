@@ -22,7 +22,7 @@
 <% end %>
 
 <ol>
-<% @user.recipes.each do |r| %>
+<% @user.recipes.sort {|a, b| a.name <=> b.name }.each do |r| %>
   <% if r.categories.empty? %>
    <li> <a href="/recipes/<%= r.id %>"><%= r.name %></a> </li>
   <% end %>
