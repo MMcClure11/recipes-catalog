@@ -9,8 +9,6 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-For this assessment you'll be creating a [CRUD], [MVC] app using Sinatra.  This app should be a custom app that is created to track something important to you, whether that's your golf club collection, video games, or travel destinations.  Essentially, you're building a simple Content Management System ([CMS]) using the tools you've learned thus far.
-
 ## <a id="about">About the Project</a>
 
 This project allows a user to perform basic CRUD functionality on recipes with cooking time, serving size, ingredients, instructions, and categories. They can view their recipes in an alphabetized list or organized by the categories they belong to.
@@ -22,19 +20,19 @@ To get the application started run shotgun in your terminal and then go to your 
 ## <a id="prerequisites">Prerequisites</a>
 
 This is an example of what you you need to use the software and how to install them.
-
-bundle install
-rake console
-rake db:migrate
+<br>
+bundle install<br>
+rake console<br>
+rake db:migrate<br>
 
 ## <a id="installation">Installation</a>
 
 1. Clone the repo
-  git clone https://github.com/MMcClure11/recipes-catalog.git
+  <br>git clone https://github.com/MMcClure11/recipes-catalog.git
 2. Install the gemfile packages
-  bundle install
+  <br>bundle install
 3. Created a secrets.rb file and enter your ENV variables:
-  ENV['SESSION_SECRET'] = "YOUR_OWN_PASSWORD_HERE"
+  <br>ENV['SESSION_SECRET'] = "YOUR_OWN_PASSWORD_HERE"
 
 ## <a id="contributing">Contributing</a>
 
