@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     authenticate
-    @recipe = Recipe.create(name: sanitize(params[:name]), 
+    @recipe = Recipe.create(name: sanitize(params[:name]).downcase.capitalize, 
       serving_size: sanitize(params[:serving_size]), 
       cook_time: sanitize(params[:cook_time]), 
       instructions: sanitize(params[:instructions]),
@@ -59,7 +59,7 @@ class RecipesController < ApplicationController
       params[:recipe]["category_ids"] = []
     end
     
-    @recipe.update(name: sanitize(params[:recipe][:name]), 
+    @recipe.update(name: sanitize(params[:recipe][:name]).downcase.capitalize, 
       serving_size: sanitize(params[:serving_size]), 
       cook_time: sanitize(params[:cook_time]), 
       instructions: sanitize(params[:instructions])
