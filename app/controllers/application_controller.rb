@@ -7,14 +7,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, ENV['SESSION_SECRET']
   end
 
-  # not_found do
-  #   'This is nowhere to be found.'
-  # end
-
-  # error do
-  #   'Sorry there was a nasty error - ' + env['sinatra.error'].message
-  # end
-
   get '/' do
     if logged_in?
       redirect '/recipes'

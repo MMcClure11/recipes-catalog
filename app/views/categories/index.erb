@@ -1,4 +1,8 @@
-<h2>Your Categories</h2>
+<% if @user.categories.length == 0 %>
+  <h2><%= "You currently have no categories with recipes, try making a <a href='/recipes/new'>new recipe</a>!" %></h2>
+<% else %>
+  <h2><%= @user.username %>, Here are all of your categories!</h2>
+<% end %> 
 
 <ul>
 <% @user.categories.uniq.sort {|a, b| a.name <=> b.name }.each do |category| %>
@@ -12,12 +16,15 @@
   </ol>
 <% end%>
 </ul>
+    
+<% if @user.recipes.find{ |r| r.categories.empty?} %>
+  <h3> These recipes have no category assigned: </h3>
+<% end %>
 
-<h3> No category assigned: </h3>
 <ol>
 <% @user.recipes.each do |r| %>
   <% if r.categories.empty? %>
-   <li> <%= r.name %> </li>
+   <li> <a href="/recipes/<%= r.id %>"><%= r.name %></a> </li>
   <% end %>
 <% end %>
 </ol>

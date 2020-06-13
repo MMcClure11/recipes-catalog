@@ -1,10 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  # validates :password_confirmation, presence: true
-  # <label for="password">Confirm your Password:</label>
-  # <input type="password" name="password_confirmation" placeholder="confirm password">
-
   validates :username, uniqueness: true
   validates :username, presence: true
 
