@@ -5,8 +5,15 @@
   <% @recipe.errors.full_messages.each do |error|%>
     <li><%= error %></li>
   <% end %>
-  </ul>
+</ul>
+<% end %>
 
+<% if @category && @category.errors.any? %>
+<ul>
+  <% @category.errors.full_messages.each do |error|%>
+    <li>Category <%= error.downcase %></li>
+  <% end %>
+</ul>
 <% end %>
 
 <form action="/recipes" method="POST">
