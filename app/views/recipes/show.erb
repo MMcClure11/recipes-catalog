@@ -26,8 +26,10 @@
 </ol>
 
 <a href='/recipes/<%= @recipe.id %>/edit'>Edit this Recipe</a><br>
+<br>
 <form action="/recipes/<%= @recipe.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete this Recipe">
+  <input class="button" type="submit" value="Delete this Recipe" >
 </form><br>
+
 <a href='/recipes'>All Recipes</a>

@@ -86,7 +86,7 @@
 
   <br><br>
 
-  <input type="submit" value="Update Recipe">
+  <input class="button" type="submit" value="Update Recipe">
 
 </form>
 <br>
@@ -94,7 +94,7 @@
 
 <form action="/recipes/<%= @recipe.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete this Recipe">
+  <input class="button" type="submit" value="Delete this Recipe">
 </form><br>
 
 <a href='/recipes'>See all Recipes</a>
