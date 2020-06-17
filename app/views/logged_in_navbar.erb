@@ -3,6 +3,9 @@
   <a href='/recipes'>Your Recipes</a>
   <a href='/categories'>Your Categories</a>
   <a href='/recipes/new'>New Recipe</a>
-  <a href='/logout'>Logout</a>
+  <form action="/logout" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="logout" value="Log Out">
+  </form>
 
 </div>
