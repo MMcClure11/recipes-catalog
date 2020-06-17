@@ -12,6 +12,20 @@ body, html {
   background-color: rgb(101, 208, 216);
 }
 
+.navbar-button {
+  color: rgb(21, 21, 128);
+  border: none;
+  background-color: rgb(101, 208, 216);
+  font-family: 'Indie Flower', cursive;
+  font-size: 1em;
+  padding-left: 2px;
+}
+
+.navbar-button:hover{
+  color: red;
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }
