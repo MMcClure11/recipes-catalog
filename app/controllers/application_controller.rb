@@ -28,6 +28,7 @@ class ApplicationController < Sinatra::Base
 
     def authenticate
       redirect '/login' if !logged_in?
+      raise AuthenticationError.new if !logged_in?
     end
 
     def authorize(resource)
@@ -57,6 +58,11 @@ class ApplicationController < Sinatra::Base
   not_found do 
     status 404
     erb :not_found, layout: false
+  end
+
+  error AuthenticationError do 
+    status 403
+    erb :not_authorized, layout: false
   end
 
   error ActiveRecord::RecordNotFound do 
