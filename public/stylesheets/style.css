@@ -1,11 +1,20 @@
 body, html {
   background-color: #fffff0;
   font-family: 'Indie Flower', cursive;
+  height: 100%;
+}
+
+.four-o-four {
+  font-size: 5em;
 }
 
 .not-found-page {
   background-color: rgb(109, 211, 109);
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .navbar {
