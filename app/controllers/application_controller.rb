@@ -33,7 +33,8 @@ class ApplicationController < Sinatra::Base
 
     def authorize(resource)
       authenticate
-      redirect '/recipes' if resource.user != current_user
+      # redirect '/recipes' if resource.user != current_user
+      raise AuthorizationError.new if resource.user != current_user
     end
 
     def authorize_user(user)
@@ -65,10 +66,10 @@ class ApplicationController < Sinatra::Base
     erb :not_authenticated, layout: false
   end
 
-  # error AuthorizationError do 
-  #   status 403
-  #   erb :not_authorized, layout: false
-  # end
+  error AuthorizationError do 
+    status 403
+    erb :not_authorized, layout: false
+  end
 
   error ActiveRecord::RecordNotFound do 
     status 404
