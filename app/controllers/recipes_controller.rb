@@ -47,13 +47,13 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes/:id/edit' do 
-    @recipe = Recipe.find_by(id: params[:id])
+    @recipe = Recipe.find(params[:id])
     authorize(@recipe)
     erb :'/recipes/edit'
   end
 
   patch '/recipes/:id' do 
-    @recipe = Recipe.find_by(id: params[:id])
+    @recipe = Recipe.find(params[:id])
     authorize(@recipe)
     if !params[:recipe].keys.include?("category_ids")
       params[:recipe]["category_ids"] = []
@@ -85,7 +85,7 @@ class RecipesController < ApplicationController
   end
 
   delete '/recipes/:id' do
-    recipe = Recipe.find_by(id: params[:id])
+    recipe = Recipe.find(params[:id])
     authorize(recipe)
     recipe.destroy
     redirect '/recipes'

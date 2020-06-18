@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   get '/categories/:id' do
     authenticate
     @user = current_user
-    @category = Category.find_by(id: params[:id])
+    @category = Category.find(params[:id])
     erb :'/categories/show'
   end
 
