@@ -3,6 +3,11 @@ body, html {
   font-family: 'Indie Flower', cursive;
 }
 
+.not-found-page {
+  background-color: rgb(109, 211, 109);
+  height: 100%;
+}
+
 .navbar {
   display: flex;
   justify-content: space-around;

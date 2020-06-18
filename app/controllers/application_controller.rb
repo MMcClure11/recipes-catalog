@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
     set :views, -> {File.join(root, "../views")}
     enable :sessions
     set :session_secret, ENV['SESSION_SECRET']
+    disable :show_exceptions
   end
 
   get '/' do
@@ -51,6 +52,11 @@ class ApplicationController < Sinatra::Base
       end
     end
 
+  end
+
+  error ActiveRecord::RecordNotFound do 
+    status 404
+    erb :not_found, layout: false
   end
 
 end
