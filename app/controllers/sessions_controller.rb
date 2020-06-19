@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
     @user = User.new(name: sanitize(params[:name]), 
       email: sanitize(params[:email]), 
       username: sanitize(params[:username]), 
-      password: sanitize(params[:password])
+      password: sanitize(params[:password]),
+      password_confirmation: sanitize(params[:password_confirmation])
     )
       
     if @user.save
