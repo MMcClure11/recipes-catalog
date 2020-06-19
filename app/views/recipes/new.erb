@@ -18,13 +18,13 @@
 
 <form action="/recipes" method="POST">
   <label for="name">Recipe Name:</label>
-  <input type="text" name="name" placeholder="Red Salad" required><br>
+  <input type="text" name="name" placeholder="Red Salad" value="<%= @recipe ? @recipe.name : nil %>" required><br>
   <br><br>
   <label for="serving_size">Serving Size:</label>
-  <input type="text" name="serving_size" placeholder="2" required>
+  <input type="text" name="serving_size" placeholder="2" value="<%= @recipe ? @recipe.serving_size : nil %>" required>
   <br><br>
   <label for="cook_time">Cook Time:</label>  
-  <input type="text" name="cook_time" placeholder="30 minutes" required>
+  <input type="text" name="cook_time" placeholder="30 minutes" value="<%= @recipe ? @recipe.cook_time : nil %>"required>
   <br><br>
   
   <table>
@@ -38,10 +38,10 @@
       <% 10.times do %>
       <tr>
         <td>
-          <input type="text" name="recipe_ingredients[][ingredient][name]" >
+          <input type="text" name="recipe_ingredients[][ingredient][name]">
         </td>
         <td>
-          <input type="text" name="recipe_ingredients[][quantity]" >
+          <input type="text" name="recipe_ingredients[][quantity]">
         </td>
       </tr>
       <% end %>
@@ -51,7 +51,7 @@
   <br><br>
   <label for="instructions">Instructions: <strong>Separate each instruction by a period ( . )</strong></label>
   <br>
-  <textarea name="instructions" cols="30" rows="10" placeholder="Cut all of the fruits with a kunai knife into small pieces, and chop the parsley very fine. Mix together in medium sized bowl." required></textarea>
+  <textarea name="instructions" cols="30" rows="10" placeholder="Cut all of the fruits with a kunai knife into small pieces, and chop the parsley very fine. Mix together in medium sized bowl." required><%= @recipe ? @recipe.instructions : nil %></textarea>
   <br><br>
 
   <label for="category">Choose a Category:</label><br>
@@ -61,7 +61,7 @@
     <br>
   <p>Or Create a Category:</p>
     <label for="new_category">Category Name:</label>
-    <input type="text" name="category[name]">
+    <input type="text" name="category[name]" value="<%= @category ? @category.name : nil %>">
   <br><br>
 
   <input class="button" type="submit" value="Create">
