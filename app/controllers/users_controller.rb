@@ -15,16 +15,6 @@ class UsersController < ApplicationController
   patch '/users/:id' do
     @user = current_user
     authorize_user(@user)
-    # @user.update(name: sanitize(params[:name]), 
-    #   email: sanitize(params[:email]),
-    #   username: sanitize(params[:username]),
-    #   password: params[:password]
-    #   )
-    # if @user.save
-    #   redirect '/dashboard'
-    # else
-    #   erb :"/users/edit"
-    # end
     if !@user.authenticate(params[:password])
       @user.errors.add(:password, "was incorrect")
       erb :'/users/edit'

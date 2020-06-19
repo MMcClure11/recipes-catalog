@@ -23,9 +23,11 @@
   <label for="username">Username:</label>
   <input type="text" name="username" value="<%= @user.username %>"><br><br>
 
-  <label for="password">Enter your current and new password if you would like to update your password:</label><br><br>
+  <label for="password">Enter your current password to make account changes:</label>
   <input type="password" name="password" id="password" placeholder="Current password"><br><br>
+  <label for="new_password">New Password:</label>
   <input type="password" name="new_password" id="password" placeholder="New password"><br><br>
+  <label for="new_password_confirmation">Confirm New Password:</label>
   <input type="password" name="new_password_confirmation" id="password" placeholder="Confirm new password"><br><br>
 
   <input class="button" type="submit" value="Update">
