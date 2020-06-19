@@ -3,7 +3,7 @@
 <% if @recipe && @recipe.errors.any? %>
 <ul>
   <% @recipe.errors.full_messages.each do |error|%>
-    <li><%= error %></li>
+    <li class="danger"><%= error %></li>
   <% end %>
 </ul>
 <% end %>
@@ -11,7 +11,7 @@
 <% if @category && @category.errors.any? %>
 <ul>
   <% @category.errors.full_messages.each do |error|%>
-    <li>Category <%= error.downcase %></li>
+    <li class="danger">Category <%= error.downcase %></li>
   <% end %>
 </ul>
 <% end %>

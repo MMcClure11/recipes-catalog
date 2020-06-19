@@ -3,7 +3,7 @@
 <% if @user && @user.errors.any? %>
 <ul>
   <% @user.errors.full_messages.each do |error|%>
-    <li><%= error %></li>
+    <li class="danger"><%= error %></li>
   <% end %>
   </ul>
 
