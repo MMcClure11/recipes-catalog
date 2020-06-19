@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  validates :password, length: { in: 6..20}, unless: ->(u){u.password.blank?}
+
   validates :username, uniqueness: true
   validates :username, presence: true
 
