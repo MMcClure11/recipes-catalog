@@ -39,7 +39,8 @@ class ApplicationController < Sinatra::Base
 
     def authorize_user(user)
       authenticate
-      redirect '/recipes' if user != current_user
+      # redirect '/recipes' if user != current_user
+      raise AuthorizationError.new if user != current_user
     end
 
     def sanitize(params)
