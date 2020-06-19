@@ -13,19 +13,46 @@ class UsersController < ApplicationController
   end
 
   patch '/users/:id' do
-    @user = User.find_by(id: params[:id])
+    @user = current_user
     authorize_user(@user)
-    @user.update(name: sanitize(params[:name]), 
-      email: sanitize(params[:email]),
-      username: sanitize(params[:username]),
-      password: params[:password]
-      )
-    if @user.save
-      redirect '/dashboard'
+    # @user.update(name: sanitize(params[:name]), 
+    #   email: sanitize(params[:email]),
+    #   username: sanitize(params[:username]),
+    #   password: params[:password]
+    #   )
+    # if @user.save
+    #   redirect '/dashboard'
+    # else
+    #   erb :"/users/edit"
+    # end
+    if !@user.authenticate(params[:password])
+      @user.errors.add(:password, "was incorrect")
+      erb :'/users/edit'
     else
-      erb :"/users/edit"
+      if params[:new_password].empty?
+        @user.update(name: sanitize(params[:name]), 
+          email: sanitize(params[:email]),
+          username: sanitize(params[:username])
+        )
+        if @user.errors.any?
+          erb :'/users/edit'
+        else
+          redirect '/dashboard'
+        end
+      else
+        @user.update(name: sanitize(params[:name]), 
+          email: sanitize(params[:email]),
+          username: sanitize(params[:username]),
+          password: params[:new_password],
+          password_confirmation: params[:new_password_confirmation]
+          )
+          if @user.errors.any?
+            erb :'/users/edit'
+          else
+            redirect '/dashboard'
+          end
+      end
     end
-    
   end
 
 end
