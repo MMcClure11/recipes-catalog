@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   patch '/users/:id' do
-    @user = current_user
+    @user = User.find_by(id: params[:id])
     authorize_user(@user)
     if !@user.authenticate(params[:password])
       @user.errors.add(:password, "was incorrect")
