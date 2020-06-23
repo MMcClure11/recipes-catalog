@@ -1,11 +1,16 @@
+<form action="/recipes" method="get">
+  <input type="text" placeholder="Search by recipe title" name="search">
+  <input type="submit" value="Search">
+</form>
 
-<% if @user.recipes.length == 0 %>
+
+<% if current_user.recipes.length == 0 %>
   <h2><%= "You currently have no recipes, try making a <a href='/recipes/new'>new recipe</a>!" %></h2>
 <% else %>
-  <h2><%= @user.username %>, Here are all of your recipes!</h2>
+  <h2><%= current_user.username %>, Here are all of your recipes!</h2>
 <% end %> 
 <ul>
-<% @user.recipes.all.sort {|a, b| a.name <=> b.name }.each do |recipe| %>
+<% @recipes.sort {|a, b| a.name <=> b.name }.each do |recipe| %>
   <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
 <% end%>
 </ul>

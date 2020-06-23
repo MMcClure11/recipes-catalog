@@ -5,7 +5,11 @@ class RecipesController < ApplicationController
 
   get '/recipes' do
     authenticate
-    @user = current_user
+    if params[:search]
+      @recipes = current_user.recipes.where("name LIKE ?", "%#{params[:search]}%")
+    else
+      @recipes = current_user.recipes
+    end 
     erb :'/recipes/index'
   end
 
@@ -22,11 +26,11 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     authenticate
-    @recipe = Recipe.create(name: sanitize(params[:name]).downcase.capitalize, 
+    @recipe = current_user.recipes.create(name: sanitize(params[:name]).downcase.capitalize, 
       serving_size: sanitize(params[:serving_size]), 
       cook_time: sanitize(params[:cook_time]), 
-      instructions: sanitize(params[:instructions]),
-      user: current_user)
+      instructions: sanitize(params[:instructions])
+      )
     
     @recipe.create_recipe_ingredient_from(params[:recipe_ingredients])
     
