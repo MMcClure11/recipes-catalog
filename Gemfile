@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 gem "sinatra", "~> 2.0"
 
-gem "activerecord", "~> 6.0"
+gem "activerecord", "~> 6.1"
 
 gem "shotgun", "~> 0.9.2"
 
